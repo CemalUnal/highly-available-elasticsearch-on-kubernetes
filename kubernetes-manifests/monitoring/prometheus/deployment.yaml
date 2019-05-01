@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-deployment
+  namespace: kube-monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      serviceAccountName: prometheus
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v2.9.2
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
+            - "--web.enable-lifecycle"
+            - "--storage.tsdb.no-lockfile"
+          ports:
+            - name: prometheus
+              containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config
+              mountPath: /etc/prometheus
+            - name: prometheus-storage
+              mountPath: /prometheus
+            # - name: prometheus-rules
+            #   mountPath: /etc/prometheus-rules
+      initContainers:
+      - name: volume-mount-dir-permissions
+        image: busybox
+        command: ["sh", "-c", "chmod -R 777 /prometheus"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: prometheus-storage
+          mountPath: /prometheus
+      securityContext:
+        fsGroup: 2000
+        runAsNonRoot: true
+        runAsUser: 1000
+      volumes:
+        - name: prometheus-config
+          configMap:
+            defaultMode: 420
+            name: prometheus-conf
+        - name: prometheus-storage
+          persistentVolumeClaim:
+            claimName: prometheus-persistent-volume-claim
+        # - name: prometheus-rules
+        #     configMap:
+        #       name: prometheus-rules

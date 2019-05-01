@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ha-elasticsearch
+  namespace: ha-elasticsearch-cluster
+  labels:
+    app: ha-elasticsearch
+spec:
+  selector:
+    app: ha-elasticsearch
+  # TODO: headless olursa/olmazsa ne fark ediyor bak.
+  # clusterIP: None
+  ports:
+    - port: 9200
+      name: rest
+    - port: 9300
+      name: inter-node

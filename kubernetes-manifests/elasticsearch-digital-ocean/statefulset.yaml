@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ha-elasticsearch
+  namespace: ha-elasticsearch-cluster
+spec:
+  serviceName: ha-elasticsearch
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ha-elasticsearch
+  template:
+    metadata:
+      labels:
+        app: ha-elasticsearch
+    spec:
+      containers:
+      - name: ha-elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.3
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 100m
+        ports:
+        - containerPort: 9200
+          name: rest
+          protocol: TCP
+        - containerPort: 9300
+          name: inter-node
+          protocol: TCP
+        volumeMounts:
+        - name: elasticsearch-volume
+          mountPath: /usr/share/elasticsearch/data
+        env:
+          - name: ES_JAVA_OPTS
+            value: "-Xms512m -Xmx512m"
+          - name: node.name
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: cluster.name
+            value: ha-elasticsearch-cluster
+          - name: discovery.zen.ping.unicast.hosts
+            value: "ha-elasticsearch-0.ha-elasticsearch,ha-elasticsearch-1.ha-elasticsearch,ha-elasticsearch-2.ha-elasticsearch"
+          - name: discovery.zen.minimum_master_nodes
+            value: "2"
+      initContainers:
+      - name: increase-vm-max-map
+        image: busybox
+        command: ["sysctl", "-w", "vm.max_map_count=262144"]
+        securityContext:
+          privileged: true
+      - name: increase-fd-ulimit
+        image: busybox
+        command: ["sh", "-c", "ulimit -n 65536"]
+        securityContext:
+          privileged: true
+      - name: volume-mount-dir-permissions
+        image: busybox
+        # command: ["/bin/chmod", "-R", "777", /usr/share/elasticsearch/data"]
+        command: ["sh", "-c", "chmod -R 777 /usr/share/elasticsearch/data"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: elasticsearch-volume
+          mountPath: /usr/share/elasticsearch/data
+  volumeClaimTemplates:
+  - metadata:
+      name: elasticsearch-volume
+      labels:
+        app: ha-elasticsearch
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: do-block-storage
+      resources:
+        requests:
+          storage: 10Gi

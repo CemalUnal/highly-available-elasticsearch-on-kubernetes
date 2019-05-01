@@ -1,0 +1,9 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: ha-elasticsearch-pdb
+spec:
+  selector:
+    matchLabels:
+      app: ha-elasticsearch
+  maxUnavailable: 1
