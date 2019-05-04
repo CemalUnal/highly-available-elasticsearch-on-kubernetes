@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# USAGE 
-# You need to place this script to the parent directory of your helm chart.
-# Then execute the following command in your terminal to deploy a helm chart.
-# $ bash deploy-helm-chart.sh --release-name=grafana --namespace=kube-monitoring --helm-chart-path=grafana --values-yaml="values.yaml"
-
 set -e
 
 for i in "$@"

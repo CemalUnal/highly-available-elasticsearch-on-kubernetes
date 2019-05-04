@@ -46,12 +46,13 @@ spec:
               configMapKeyRef:
                 name: {{ template "fluentd.full_name" . }}
                 key: uid
-        # resources:
-        #   limits:
-        #     memory: 512Mi
-        #   requests:
-        #     cpu: 100m
-        #     memory: 200Mi
+        resources:
+          limits:
+            cpu: {{ .Values.cpuLimit }}
+            memory: {{ .Values.memoryLimit }}
+          requests:
+            cpu: {{ .Values.cpuRequest }}
+            memory: {{ .Values.memoryRequest }}
         volumeMounts:
         - name: varlog
           mountPath: /var/log

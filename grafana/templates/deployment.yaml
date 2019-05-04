@@ -28,9 +28,37 @@ spec:
             port: http
         resources:
           limits:
-            cpu: 200m
-            memory: 200Mi
+            cpu: {{ .Values.cpuLimit }}
+            memory: {{ .Values.memoryLimit }}
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: {{ .Values.cpuRequest }}
+            memory: {{ .Values.memoryRequest }}
+        volumeMounts:
+        - name: grafana-ini
+          mountPath: /etc/grafana/grafana.ini
+          subPath: grafana.ini
+        - mountPath: /etc/grafana/provisioning/datasources
+          name: grafana-datasource
+        - mountPath: /etc/grafana/provisioning/dashboards
+          name: grafana-dashboards
+        - mountPath: /grafana-dashboard-definitions/0/cluster-compute-resources
+          name: grafana-cluster-compute-resources
+        - mountPath: /grafana-dashboard-definitions/0/namespace-compute-resources
+          name: grafana-namespace-compute-resources
       serviceAccountName: {{ template "grafana.full_name" . }}
+      volumes:
+      - name: grafana-ini
+        configMap:  
+          name: {{ template "grafana.full_name" . }}
+      - name: grafana-datasource
+        secret:
+          secretName: {{ template "grafana.full_name" . }}
+      - name: grafana-dashboards
+        configMap:  
+          name: grafana-dashboards
+      - name: grafana-cluster-compute-resources
+        secret:
+          secretName: {{ template "grafana.full_name" . }}-cluster
+      - name: grafana-namespace-compute-resources
+        secret:
+          secretName: {{ template "grafana.full_name" . }}-namespace

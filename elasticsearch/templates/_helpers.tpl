@@ -6,10 +6,18 @@ app: {{ .Chart.Name }}
 {{- .Values.appName -}}
 {{- end -}}
 
-{{- define "endpoints" -}}
+{{- define "initialmnodes" -}}
 {{- $replicas := .replicas | int }}
 {{- $np := printf "%s" .nodePrefix }}
   {{- range $i := untilStep 0 $replicas 1 -}}
 {{ $np }}-{{ $i }},
+  {{- end -}}
+{{- end -}}
+
+{{- define "nodenames" -}}
+{{- $replicas := .replicas | int }}
+{{- $np := printf "%s" .nodePrefix }}
+  {{- range $i := untilStep 0 $replicas 1 -}}
+{{ $np }}-{{ $i }}.{{ $np }},
   {{- end -}}
 {{- end -}}
