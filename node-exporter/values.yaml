@@ -1,0 +1,11 @@
+# Daemonset metadata & spec
+appName: node-exporter
+namespace: kube-monitoring
+imageRepository: prom/node-exporter
+imageTag: v0.17.0
+imagePullPolicy: Always
+cpuLimit: 1000m
+cpuRequest: 100m
+
+containerPort: 9100
+hostPort: 9100

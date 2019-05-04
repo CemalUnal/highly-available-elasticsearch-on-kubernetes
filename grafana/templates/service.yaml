@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "grafana.release_labels" . | indent 4 }}
+  name: {{ template "grafana.full_name" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  type: {{ .Values.serviceType }}
+  ports:
+  - name: http
+    port: {{ .Values.containerPort }}
+  selector:
+    {{- include "grafana.release_labels" . | indent 4 }}

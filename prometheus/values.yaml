@@ -1,0 +1,11 @@
+# Daemonset metadata & spec
+appName: prometheus
+namespace: kube-monitoring
+imageRepository: prom/prometheus
+imageTag: v2.9.2
+imagePullPolicy: Always
+replicas: 1
+cpuLimit: 1000m
+cpuRequest: 100m
+
+containerPort: 9090

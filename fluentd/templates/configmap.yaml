@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fluentd.full_name" . }}
+  namespace: {{ .Values.namespace }}
+data:
+  elasticsearch-host: {{ .Values.elasticsearchHost }}
+  elasticsearch-port: {{ .Values.elasticsearchPort | quote }}
+  elasticsearch-scheme: {{ .Values.elasticsearchScheme }}
+  uid: {{ .Values.uid | quote }}

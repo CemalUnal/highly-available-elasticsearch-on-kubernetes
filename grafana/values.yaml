@@ -1,0 +1,12 @@
+appName: grafana
+namespace: kube-monitoring
+imageRepository: grafana/grafana
+imageTag: 6.1.6
+imagePullPolicy: Always
+replicas: 1
+cpuLimit: 1000m
+cpuRequest: 100m
+
+serviceType: LoadBalancer
+containerPort: 3000
+

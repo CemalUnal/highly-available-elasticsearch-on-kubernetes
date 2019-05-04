@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "elasticsearch.full_name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "elasticsearch.release_labels" . | indent 4}}
+spec:
+  selector:
+    {{- include "elasticsearch.release_labels" . | indent 6 }}
+  ports:
+    - name: http-rest
+      port: {{ .Values.httpRestPort }}
+    - name: transport
+      port: {{ .Values.transportPort }}
+  type: {{ .Values.serviceType }}

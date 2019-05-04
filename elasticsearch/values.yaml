@@ -1,0 +1,37 @@
+# Statefulset metadata & spec
+appName: ha-elasticsearch
+namespace: ha-elasticsearch-cluster
+imageRepository: docker.elastic.co/elasticsearch/elasticsearch-oss
+# imageTag: 6.4.3
+imageTag: 7.0.1
+imagePullPolicy: Always
+replicas: 3
+cpuLimit: 1000m
+cpuRequest: 100m
+
+# Service spec
+httpRestPort: 9200
+transportPort: 9300
+serviceType: LoadBalancer
+
+# Elasticsearch options
+esJavaOpts: "-Xms512m -Xmx512m"
+clusterName: ha-elasticsearch-cluster
+nodePrefix: "ha-elasticsearch"
+nodeDiscoveryMethod: "ha-elasticsearch-0.ha-elasticsearch,ha-elasticsearch-1.ha-elasticsearch,ha-elasticsearch-2.ha-elasticsearch"
+minMasterNodes: 2
+vmMaxMapCount: 262144
+fileDescriptorLimit: 65535
+
+# Persistency
+volumeName: ha-elasticsearch-volume
+storageClass: do-block-storage
+accessMode: ReadWriteOnce
+storageResourceRequest: 1Gi
+
+# Pod Disruption Budget
+maxUnavailable: 1
+pdbName: ha-elasticsearch-pdb
+
+
+# clusterName: "elasticsearch"

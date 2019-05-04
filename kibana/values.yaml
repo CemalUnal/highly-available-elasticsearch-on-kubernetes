@@ -1,0 +1,14 @@
+# Daemonset metadata & spec
+appName: kibana
+namespace: kube-logging
+imageRepository: docker.elastic.co/kibana/kibana-oss
+imageTag: 7.0.1
+imagePullPolicy: Always
+replicas: 1
+cpuLimit: 1000m
+cpuRequest: 100m
+
+containerPort: 5601
+serviceType: LoadBalancer
+
+elasticsearchUrl: "http://ha-elasticsearch.ha-elasticsearch-cluster.svc.cluster.local:9200"

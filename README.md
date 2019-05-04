@@ -38,6 +38,16 @@
 - kibana ve grafana'ya authentication mekanizmasi koyabilirsin.
 - senin monitoring yaml'larini kube-prometheus ile karsilastir.
 - jaeger
+- 9300 portu ne ise yariyor bak
+- butun docker image'larini gozden gecir.
+- do'da daha kucuk makinelere gecilebilir.
+- rollback icin script
+- imagepullpolicy
+- label indentation
+- node exporter'da hostNetwork: true vs.
+- monitoring elemanlarindaki label'lari degistirdim, calisiyor mu bir bak.
+- daemonset icin toleration tanimi ?
+- dry-run debug'i sil
 
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_notes_for_production_use_and_defaults
 ## Installation
@@ -50,7 +60,7 @@ $ kubectl apply -f kubernetes-manifests/elasticsearch
 Then verify the installation by executing the following:
 
 ```console
-$ kubectl get pods -n ha-elasticsearch-cluster -w
+$ kubectl get pods -n ha-elasticsearch-cluster -o wide -w
 ```
 
 Accessing the Elasticsearch cluster via its rest api can be done by using kubectl port forward. Execute the following to do so;
@@ -106,3 +116,34 @@ Also I have created PodDisruptionBudget to indicate that at most one pod from th
 
 ## References
 - https://kubernetes.io/docs/tutorials/stateful-application/zookeeper/#tolerating-node-failure (TODO: kaldirilabilir)
+
+
+http://prometheus-service.kube-monitoring.svc.cluster.local:9200
+
+
+### Monitoring
+
+toollarin detaylarindan basitce bahset.
+
+- Prometheus
+- Kube state metrics
+- Node exporter
+- Grafana (Grafana gelince data source ekle, dashboard import et.)
+
+### Logging && Debugging
+
+- Fluentd
+- Kibana (kibana gelince dashboard import et.)
+- debug case'ini gostermek icin sacma islemler yapabilirsin. (orn grafanada data source'u yanlis girme, elasticsearch'e yanlis istek atma.)
+
+
+### Helm ?
+
+
+### Backup
+
+
+### Zero down time deployment
+
+
+Currently I am using free plan on DigitalOcean, the urls are temporary, I may provide different urls if we decide to proceed to the next interview.

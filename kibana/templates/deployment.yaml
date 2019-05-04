@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "kibana.full_name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "kibana.release_labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "kibana.release_labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "kibana.release_labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: {{ template "kibana.full_name" . }}
+        image: {{ .Values.imageRepository }}:{{ .Values.imageTag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        # resources:
+        #   limits:
+        #     cpu: 1000m
+        #   requests:
+        #     cpu: 100m
+        env:
+          - name: ELASTICSEARCH_HOSTS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "kibana.full_name" . }}
+                key: elasticsearch-url
+        ports:
+        - name: kibana
+          containerPort: {{ .Values.containerPort }}

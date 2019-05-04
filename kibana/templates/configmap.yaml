@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "kibana.full_name" . }}
+  namespace: {{ .Values.namespace }}
+data:
+  elasticsearch-url: {{ .Values.elasticsearchUrl }}

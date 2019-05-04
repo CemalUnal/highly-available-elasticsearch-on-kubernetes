@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ template "node-exporter.full_name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "node-exporter.release_labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "node-exporter.release_labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "node-exporter.release_labels" . | indent 8 }}
+    spec:
+      containers:
+        - name: prometheus-node-exporter
+          image: {{ .Values.imageRepository }}:{{ .Values.imageTag }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          args:
+            - --path.procfs=/host/proc
+            - --path.sysfs=/host/sys
+          ports:
+            - name: metrics
+              containerPort: {{ .Values.containerPort }}
+              hostPort: {{ .Values.hostPort }}
+          volumeMounts:
+            - name: proc
+              mountPath: /host/proc
+              readOnly:  true
+            - name: sys
+              mountPath: /host/sys
+              readOnly: true
+          resources:
+            limits:
+              cpu: 10m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 150Mi
+      hostNetwork: true
+      hostPID: true
+      volumes:
+        - name: proc
+          hostPath:
+            path: /proc
+        - name: sys
+          hostPath:
+            path: /sys

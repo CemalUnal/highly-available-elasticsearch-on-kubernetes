@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ template "elasticsearch.full_name" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: {{ template "elasticsearch.full_name" . }}
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "elasticsearch.release_labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "elasticsearch.release_labels" . | indent 8 }}
+      annotations:
+          checksum/config-map: {{ include (print $.Chart.Name "/templates/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+      - name: {{ template "elasticsearch.full_name" . }}
+        image: {{ .Values.imageRepository }}:{{ .Values.imageTag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        resources:
+          limits:
+            cpu: {{ .Values.cpuLimit }}
+          requests:
+            cpu: {{ .Values.cpuRequest }}
+        ports:
+        - name: http-rest
+          containerPort: {{ .Values.httpRestPort }}
+        - name: transport
+          containerPort: {{ .Values.transportPort }}
+        volumeMounts:
+        - name: {{ .Values.volumeName }}
+          mountPath: /usr/share/elasticsearch/data
+        env:
+          - name: ES_JAVA_OPTS
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "elasticsearch.full_name" . }}
+                key: es-java-opts
+          - name: node.name
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: cluster.name
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "elasticsearch.full_name" . }}
+                key: cluster-name
+          - name: discovery.seed_hosts
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "elasticsearch.full_name" . }}
+                key: node-discovery-method
+          - name: cluster.initial_master_nodes
+            value: "{{ template "endpoints" .Values }}"
+          - name: discovery.zen.minimum_master_nodes
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "elasticsearch.full_name" . }}
+                key: min-master-nodes
+      initContainers:
+      - name: increase-vm-max-map
+        image: busybox
+        command: ["sysctl", "-w", "vm.max_map_count={{ .Values.vmMaxMapCount }}"]
+        securityContext:
+          privileged: true
+      - name: increase-fd-ulimit
+        image: busybox
+        command: ["sh", "-c", "ulimit -n {{ .Values.fileDescriptorLimit }}"]
+        securityContext:
+          privileged: true
+      - name: volume-mount-dir-permissions
+        image: busybox
+        command: ["sh", "-c", "chmod -R 777 /usr/share/elasticsearch/data"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: {{ .Values.volumeName }}
+          mountPath: /usr/share/elasticsearch/data
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.volumeName }}
+      labels:
+        {{- include "elasticsearch.release_labels" . | indent 8 }}
+    spec:
+      accessModes:
+        - {{ .Values.accessMode }}
+      storageClassName: {{ .Values.storageClass }}
+      resources:
+        requests:
+          storage: {{ .Values.storageResourceRequest }}

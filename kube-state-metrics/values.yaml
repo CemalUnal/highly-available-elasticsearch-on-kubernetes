@@ -1,0 +1,20 @@
+# Daemonset metadata & spec
+appName: kube-state-metrics
+namespace: kube-monitoring
+kubeStateMetricsImageRepository: quay.io/coreos/kube-state-metrics
+kubeStateMetricsImageTag: v1.5.0
+kubeStateMetricsImagePullPolicy: Always
+addonResizerImageRepository: k8s.gcr.io/addon-resizer
+addonResizerImageTag: 1.8.3
+addonResizerImagePullPolicy: Always
+
+replicas: 1
+cpuLimit: 1000m
+cpuRequest: 100m
+
+containerHttpMetricsPort: 8080
+containerTelemetryPort: 8081
+
+# Liveness & Readiness Probes
+initialDelaySeconds: 5
+timeoutSeconds: 5

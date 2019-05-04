@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ template "fluentd.full_name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "fluentd.release_labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+       {{- include "fluentd.release_labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+         {{- include "fluentd.release_labels" . | indent 8 }}
+      annotations:
+          checksum/config-map: {{ include (print $.Chart.Name "/templates/configmap.yaml") . | sha256sum }}
+    spec:
+      serviceAccount: {{ template "fluentd.full_name" . }}
+      serviceAccountName: {{ template "fluentd.full_name" . }}
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: {{ template "fluentd.full_name" . }}
+        image: {{ .Values.imageRepository }}:{{ .Values.imageTag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        env:
+          - name:  FLUENT_ELASTICSEARCH_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "fluentd.full_name" . }}
+                key: elasticsearch-host
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "fluentd.full_name" . }}
+                key: elasticsearch-port
+          - name: FLUENT_ELASTICSEARCH_SCHEME
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "fluentd.full_name" . }}
+                key: elasticsearch-scheme
+          - name: FLUENT_UID
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "fluentd.full_name" . }}
+                key: uid
+        # resources:
+        #   limits:
+        #     memory: 512Mi
+        #   requests:
+        #     cpu: 100m
+        #     memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers

@@ -1,0 +1,9 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ .Values.pdbName }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "elasticsearch.release_labels" . | indent 6 }}
+  maxUnavailable: {{ .Values.maxUnavailable }}

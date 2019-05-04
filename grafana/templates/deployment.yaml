@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "grafana.full_name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "grafana.release_labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "grafana.release_labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "grafana.release_labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: {{ template "grafana.full_name" . }}
+        image: {{ .Values.imageRepository }}:{{ .Values.imageTag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.containerPort }}
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: http
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      serviceAccountName: {{ template "grafana.full_name" . }}
