@@ -4,7 +4,7 @@ metadata:
   name: {{ template "prometheus.full_name" . }}
   namespace: {{ .Values.namespace }}
   labels:
-    {{- include "prometheus.release_labels" . 4 }}
+    {{- include "prometheus.release_labels" . | indent 4 }}
   annotations: 
     prometheus.io/scrape: "true"
 spec:

@@ -4,9 +4,10 @@ imageRepository: grafana/grafana
 imageTag: 6.1.6
 imagePullPolicy: Always
 replicas: 1
-cpuLimit: 1000m
+cpuLimit: 200m
 cpuRequest: 100m
+memoryLimit: "200Mi"
+memoryRequest: "100Mi"
 
 serviceType: LoadBalancer
 containerPort: 3000
-

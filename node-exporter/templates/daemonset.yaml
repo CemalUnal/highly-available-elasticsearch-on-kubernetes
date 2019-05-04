@@ -34,11 +34,11 @@ spec:
               readOnly: true
           resources:
             limits:
-              cpu: 10m
-              memory: 250Mi
+              cpu: {{ .Values.cpuLimit }}
+              memory: {{ .Values.memoryLimit }}
             requests:
-              cpu: 10m
-              memory: 150Mi
+              cpu: {{ .Values.cpuRequest }}
+              memory: {{ .Values.memoryRequest }}
       hostNetwork: true
       hostPID: true
       volumes:

@@ -6,5 +6,4 @@ metadata:
 data:
   es-java-opts: {{ .Values.esJavaOpts }}
   cluster-name: {{ .Values.clusterName }}
-  node-discovery-method: {{ .Values.nodeDiscoveryMethod }}
   min-master-nodes: {{ .Values.minMasterNodes | quote }}

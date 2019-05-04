@@ -1,11 +1,12 @@
-# Daemonset metadata & spec
 appName: fluentd
 namespace: kube-logging
 imageRepository: fluent/fluentd-kubernetes-daemonset
 imageTag: v1.3-debian-elasticsearch-1
 imagePullPolicy: Always
-cpuLimit: 1000m
-cpuRequest: 100m
+cpuLimit: "200m"
+cpuRequest: "100m"
+memoryLimit: "512Mi"
+memoryRequest: "200Mi"
 
 elasticsearchHost: "ha-elasticsearch.ha-elasticsearch-cluster.svc.cluster.local"
 elasticsearchPort: 9200

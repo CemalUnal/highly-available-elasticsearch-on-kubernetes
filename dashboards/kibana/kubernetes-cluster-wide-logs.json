@@ -1,0 +1,434 @@
+[
+  {
+    "_id": "055ab280-425a-11e8-8bf5-0529df825f82",
+    "_type": "search",
+    "_source": {
+      "title": "All Logs",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "kubernetes.container_name",
+        "log",
+        "kubernetes.host"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "search": "7.0.0"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "a8b30860-0cda-11e9-8008-41dada7a63e0",
+    "_type": "search",
+    "_source": {
+      "title": "Warn Logs Detailed",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "kubernetes.container_name",
+        "log",
+        "kubernetes.container_image",
+        "kubernetes.pod_name",
+        "kubernetes.namespace_name"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"log: warn\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "search": "7.0.0"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "28e18610-3775-11e8-8bf5-0529df825f82",
+    "_type": "search",
+    "_source": {
+      "title": "Error Logs Detailed",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "kubernetes.container_name",
+        "log",
+        "kubernetes.container_image",
+        "kubernetes.pod_name",
+        "kubernetes.namespace_name"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"log: Traceback OR log: error\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "search": "7.0.0"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "dcd676f0-0cd9-11e9-8008-41dada7a63e0",
+    "_type": "search",
+    "_source": {
+      "title": "Info Logs Detailed",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "kubernetes.container_name",
+        "log",
+        "kubernetes.container_image",
+        "kubernetes.pod_name",
+        "kubernetes.namespace_name"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"query\":\"log: info\",\"language\":\"lucene\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "search": "7.0.0"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "45caa570-368c-11e8-9f03-db5dae1ff024",
+    "_type": "search",
+    "_source": {
+      "title": "Total Logs Detailed",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "kubernetes.container_name",
+        "log",
+        "kubernetes.container_image",
+        "kubernetes.pod_name",
+        "kubernetes.namespace_name"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"highlightAll\":true,\"version\":true,\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "search": "7.0.0"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "04dae180-336f-11e8-9f03-db5dae1ff024",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Kubernetes Cluster Wide Logs",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"gridData\":{\"x\":0,\"y\":0,\"w\":24,\"h\":12,\"i\":\"1\"},\"panelIndex\":\"1\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_0\"},{\"embeddableConfig\":{\"vis\":{\"legendOpen\":true}},\"gridData\":{\"x\":24,\"y\":0,\"w\":24,\"h\":12,\"i\":\"2\"},\"panelIndex\":\"2\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_1\"},{\"gridData\":{\"x\":12,\"y\":12,\"w\":12,\"h\":12,\"i\":\"3\"},\"panelIndex\":\"3\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_2\"},{\"gridData\":{\"x\":0,\"y\":12,\"w\":12,\"h\":12,\"i\":\"5\"},\"panelIndex\":\"5\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_3\"},{\"gridData\":{\"x\":0,\"y\":24,\"w\":48,\"h\":12,\"i\":\"6\"},\"panelIndex\":\"6\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_4\"},{\"gridData\":{\"x\":0,\"y\":36,\"w\":48,\"h\":13,\"i\":\"7\"},\"panelIndex\":\"7\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_5\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":24,\"y\":12,\"w\":12,\"h\":12,\"i\":\"9\"},\"panelIndex\":\"9\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_6\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":36,\"y\":12,\"w\":12,\"h\":12,\"i\":\"10\"},\"panelIndex\":\"10\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_7\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":49,\"w\":48,\"h\":15,\"i\":\"11\"},\"panelIndex\":\"11\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_8\"},{\"embeddableConfig\":{},\"gridData\":{\"x\":0,\"y\":64,\"w\":48,\"h\":15,\"i\":\"12\"},\"panelIndex\":\"12\",\"version\":\"6.4.3\",\"panelRefName\":\"panel_9\"}]",
+      "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "dashboard": "7.0.0"
+    },
+    "_references": [
+      {
+        "name": "panel_0",
+        "type": "visualization",
+        "id": "e2fd7280-336e-11e8-9f03-db5dae1ff024"
+      },
+      {
+        "name": "panel_1",
+        "type": "visualization",
+        "id": "0f0172c0-3773-11e8-8bf5-0529df825f82"
+      },
+      {
+        "name": "panel_2",
+        "type": "visualization",
+        "id": "74ad2b40-3774-11e8-8bf5-0529df825f82"
+      },
+      {
+        "name": "panel_3",
+        "type": "visualization",
+        "id": "d1cda750-3774-11e8-8bf5-0529df825f82"
+      },
+      {
+        "name": "panel_4",
+        "type": "search",
+        "id": "45caa570-368c-11e8-9f03-db5dae1ff024"
+      },
+      {
+        "name": "panel_5",
+        "type": "search",
+        "id": "28e18610-3775-11e8-8bf5-0529df825f82"
+      },
+      {
+        "name": "panel_6",
+        "type": "visualization",
+        "id": "e0b8de10-0cd5-11e9-8008-41dada7a63e0"
+      },
+      {
+        "name": "panel_7",
+        "type": "visualization",
+        "id": "98984a10-0cd7-11e9-8008-41dada7a63e0"
+      },
+      {
+        "name": "panel_8",
+        "type": "search",
+        "id": "dcd676f0-0cd9-11e9-8008-41dada7a63e0"
+      },
+      {
+        "name": "panel_9",
+        "type": "search",
+        "id": "a8b30860-0cda-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "0f0172c0-3773-11e8-8bf5-0529df825f82",
+    "_type": "visualization",
+    "_source": {
+      "title": "Log Entries",
+      "visState": "{\"title\":\"Log Entries\",\"type\":\"histogram\",\"params\":{\"type\":\"histogram\",\"grid\":{\"categoryLines\":false,\"style\":{\"color\":\"#eee\"}},\"categoryAxes\":[{\"id\":\"CategoryAxis-1\",\"type\":\"category\",\"position\":\"bottom\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\"},\"labels\":{\"show\":true,\"truncate\":100},\"title\":{}}],\"valueAxes\":[{\"id\":\"ValueAxis-1\",\"name\":\"LeftAxis-1\",\"type\":\"value\",\"position\":\"left\",\"show\":true,\"style\":{},\"scale\":{\"type\":\"linear\",\"mode\":\"normal\"},\"labels\":{\"show\":true,\"rotate\":0,\"filter\":false,\"truncate\":100},\"title\":{\"text\":\"Count\"}}],\"seriesParams\":[{\"show\":\"true\",\"type\":\"histogram\",\"mode\":\"stacked\",\"data\":{\"label\":\"Count\",\"id\":\"1\"},\"valueAxis\":\"ValueAxis-1\",\"drawLinesBetweenPoints\":true,\"showCircles\":true}],\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"times\":[],\"addTimeMarker\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "7.0.1"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "74ad2b40-3774-11e8-8bf5-0529df825f82",
+    "_type": "visualization",
+    "_source": {
+      "title": "Error Logs",
+      "visState": "{\"title\":\"Error Logs\",\"type\":\"metric\",\"params\":{\"addLegend\":false,\"addTooltip\":true,\"metric\":{\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"invertColors\":false,\"labels\":{\"show\":true},\"metricColorMode\":\"None\",\"percentageMode\":false,\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":60,\"labelColor\":false,\"subText\":\"\"},\"useRanges\":false},\"type\":\"metric\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":\"log: Traceback OR log: error\"},\"label\":\"Error Log Entries\"}]}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "7.0.1"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "e0b8de10-0cd5-11e9-8008-41dada7a63e0",
+    "_type": "visualization",
+    "_source": {
+      "title": "Warn Logs",
+      "visState": "{\"title\":\"Warn Logs\",\"type\":\"metric\",\"params\":{\"addLegend\":false,\"addTooltip\":true,\"metric\":{\"colorSchema\":\"Green to Red\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"invertColors\":false,\"labels\":{\"show\":true},\"metricColorMode\":\"None\",\"percentageMode\":false,\"style\":{\"bgColor\":false,\"bgFill\":\"#000\",\"fontSize\":60,\"labelColor\":false,\"subText\":\"\"},\"useRanges\":false},\"type\":\"metric\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":\"log: warn\"},\"label\":\"Warn Log Entries\"}]}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "7.0.1"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "d1cda750-3774-11e8-8bf5-0529df825f82",
+    "_type": "visualization",
+    "_source": {
+      "title": "Amount Logs",
+      "visState": "{\"title\":\"Amount Logs\",\"type\":\"metric\",\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":60}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "7.0.1"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "98984a10-0cd7-11e9-8008-41dada7a63e0",
+    "_type": "visualization",
+    "_source": {
+      "title": "Info Logs",
+      "visState": "{\"title\":\"Info Logs\",\"type\":\"metric\",\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":60}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"filters\",\"schema\":\"group\",\"params\":{\"filters\":[{\"input\":{\"query\":\"log: info\"},\"label\":\"Info Log Entries\"}]}}]}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"lucene\"},\"filter\":[],\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "7.0.1"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  },
+  {
+    "_id": "0749f380-0bf9-11e9-8008-41dada7a63e0",
+    "_type": "index-pattern",
+    "_source": {
+      "title": "logstash-*",
+      "timeFieldName": "@timestamp",
+      "fields": "[{\"name\":\"@timestamp\",\"type\":\"date\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"BOOT_ID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"BOOT_ID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"CAP_EFFECTIVE\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"CAP_EFFECTIVE.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"CMDLINE\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"CMDLINE.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"COMM\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"COMM.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"EXE\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"EXE.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"GID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"GID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"HOSTNAME\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"HOSTNAME.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"MACHINE_ID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"MACHINE_ID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"MESSAGE\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"MESSAGE.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"PID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"PID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"PRIORITY\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"PRIORITY.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SELINUX_CONTEXT\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SELINUX_CONTEXT.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"STREAM_ID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"STREAM_ID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SYSLOG_FACILITY\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SYSLOG_FACILITY.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SYSLOG_IDENTIFIER\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SYSLOG_IDENTIFIER.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SYSTEMD_CGROUP\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SYSTEMD_CGROUP.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SYSTEMD_INVOCATION_ID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SYSTEMD_INVOCATION_ID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SYSTEMD_SLICE\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SYSTEMD_SLICE.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"SYSTEMD_UNIT\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"SYSTEMD_UNIT.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"TRANSPORT\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"TRANSPORT.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"UID\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"UID.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"type\":\"number\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"type\":\"_source\",\"count\":0,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"docker.container_id\",\"type\":\"string\",\"count\":3,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"docker.container_id.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.container_image\",\"type\":\"string\",\"count\":5,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.container_image.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.container_image_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.container_image_id.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.container_name\",\"type\":\"string\",\"count\":1,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.container_name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.host\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.host.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.labels.component\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.labels.component.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.labels.controller-revision-hash\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.labels.controller-revision-hash.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.labels.k8s-app\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.labels.k8s-app.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.labels.pod-template-generation\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.labels.pod-template-generation.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.labels.tier\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.labels.tier.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.master_url\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.master_url.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.namespace_id\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.namespace_id.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.namespace_name\",\"type\":\"string\",\"count\":3,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.namespace_name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.pod_id\",\"type\":\"string\",\"count\":2,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.pod_id.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"kubernetes.pod_name\",\"type\":\"string\",\"count\":3,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"kubernetes.pod_name.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"log\",\"type\":\"string\",\"count\":1,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"log.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"stream\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"stream.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"tag\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"tag.keyword\",\"type\":\"string\",\"count\":0,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]"
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_references": []
+  },
+  {
+    "_id": "e2fd7280-336e-11e8-9f03-db5dae1ff024",
+    "_type": "visualization",
+    "_source": {
+      "title": "Log entries per pod",
+      "visState": "{\"title\":\"Log entries per pod\",\"type\":\"pie\",\"params\":{\"addLegend\":true,\"addTooltip\":true,\"isDonut\":true,\"labels\":{\"last_level\":true,\"show\":true,\"truncate\":100,\"values\":true},\"legendPosition\":\"right\",\"type\":\"pie\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"kubernetes.container_name.keyword\",\"size\":9999999,\"order\":\"asc\",\"orderBy\":\"_key\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":true,\"missingBucketLabel\":\"Syslog\",\"customLabel\":\"Container\"}}]}",
+      "uiStateJSON": "{\"spy\":null,\"vis\":{\"legendOpen\":true}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"indexRefName\":\"kibanaSavedObjectMeta.searchSourceJSON.index\"}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "7.0.1"
+    },
+    "_references": [
+      {
+        "name": "kibanaSavedObjectMeta.searchSourceJSON.index",
+        "type": "index-pattern",
+        "id": "0749f380-0bf9-11e9-8008-41dada7a63e0"
+      }
+    ]
+  }
+]
