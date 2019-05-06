@@ -4,24 +4,24 @@ namespace: ha-elasticsearch-cluster
 imageRepository: docker.elastic.co/elasticsearch/elasticsearch-oss
 imageTag: 7.0.1
 imagePullPolicy: Always
-replicas: 3
+replicas: 5
 updateStrategy: RollingUpdate
-cpuLimit: 2000m
-cpuRequest: 1000m
-memoryLimit: "4768Mi"
-memoryRequest: "3814Mi"
-readinessProbeInitialDelaySeconds: 30
+cpuLimit: 4000m
+cpuRequest: 2000m
+memoryLimit: "2384Mi"
+memoryRequest: "1907Mi"
+readinessProbeInitialDelaySeconds: 20
 readinessProbePeriodSeconds: 10
-livenessProbeInitialDelaySeconds: 30
+livenessProbeInitialDelaySeconds: 20
 livenessProbePeriodSeconds: 10
 
 # Service spec
 httpRestPort: 9200
 transportPort: 9300
-serviceType: LoadBalancer
+serviceType: NodePort
 
 # Elasticsearch options
-esJavaOpts: "-Xms4g -Xmx4g"
+esJavaOpts: "-Xms2g -Xmx2g"
 clusterName: ha-elasticsearch-cluster
 nodePrefix: "ha-elasticsearch"
 minMasterNodes: 2
@@ -30,9 +30,9 @@ fileDescriptorLimit: 65535
 
 # Persistency
 volumeName: ha-elasticsearch-volume
-storageClass: do-block-storage
+storageClass: manual
 accessMode: ReadWriteOnce
-storageResourceRequest: 100Gi
+storageResourceRequest: 5Gi
 
 # Pod Disruption Budget
 maxUnavailable: 1

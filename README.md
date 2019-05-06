@@ -79,6 +79,9 @@ charts=(
   "grafana:kube-monitoring"
 )
 
+# If your provisioning volumes manually, then execute the following;
+# bash create-persistent-volumes-manually.sh
+
 # Then execute the script to deploy the charts
 bash deploy-all-charts.sh "${charts[@]}"
 ```
