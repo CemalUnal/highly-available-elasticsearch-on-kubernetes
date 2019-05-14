@@ -3,22 +3,9 @@
 ## Introduction
 
 ### Abstract
-This project contains the manifests that are used to deploy highly available Elasticsearch cluster and also the monitoring tools that are used to follow some metrics and debugging.
+This project contains the manifests that are used to deploy highly available Elasticsearch cluster along with the monitoring tools that are used to follow some metrics to the Kubernetes.
 
-Currently I am using Managed Kubernetes service on DigitalOcean. My Kubernetes cluster consist of 3 worker nodes. And the master nodes are managed by DigitalOcean. Kubernetes version v1.14.1 and Docker 18.9.2 is installed all of the worker nodes.
-
-Worker node specs;
-- 8 GB Memory
-- 4 vCPUs
-- 160 GB SSD Disk
-
-Below you can find the links to access the resources that are deployed in the assignment;
-
-- Elasticsearch cluster is available at http://188.166.133.222:9200/
-- Grafana dashboards are available at
-    - http://188.166.134.220:3000/d/8fpzp0mgtvsr52bk99cdbg5xxt6jnzd6/kubernetes-cluster-monitoring-picnic
-    - http://188.166.134.220:3000/d/98wzmmtojsqf3gjh11rr7hynxqrgqjv4/kubernetes-namespace-monitoring-picnic
-- Kibana dashboard is available at http://188.166.135.10:5601/app/kibana#/dashboard/04dae180-336f-11e8-9f03-db5dae1ff024
+Kubernetes version is v1.14.1 and Docker version is 18.9.2 for all of the worker nodes.
 
 ### Tools Used
 [Helm](https://helm.sh) is used to deploy Kubernetes resources. Helm provides important facilities. These are;
@@ -140,18 +127,12 @@ prometheus-7b476bf58c-nvnwq           1/1     Running
 ```
 
 ## Access the Elasticsearch Cluster
-The Elasticsearch cluster is exposed by a load balancer in DigitalOcean. You can test the cluster is up and running by executing the following command;
-
-```console
-curl -XGET http://188.166.133.222:9200/_cluster/stats?pretty
-```
-Alternatively, if you want to use forward the Elasticsearch service port to your local environment, execute the following command;
-
+The Elasticsearch cluster can be accessed by using kubectl port-forward. To forward Elasticsearch service port to your local environment, execute the following command;
 ```console
 kubectl port-forward ha-elasticsearch-0 9200:9200 -n ha-elasticsearch-cluster
 ```
-Then test it with the following command;
 
+Then test it with the following command;
 ```console
 curl -XGET http://localhost:9200/_cluster/stats?pretty
 ```
@@ -169,7 +150,7 @@ Since Elasticsearch is a stateful service, its chart will be deployed as Statefu
 
 ### Split-Brain Issue
 
-While increasing the replica count of the StatefulSet, we need to consider the "split-brain" issue. Number of master-eligible nodes should be an odd number. Also **discovery.zen.minimum_master_nodes** environment variable should set to  N/2 + 1, and rounding the result down to the closest integer (where N is the number of master eligible nodes). With my current configuration **discovery.zen.minimum_master_nodes** is set to 2. Each Elasticsearch cluster instance is master-eligible since they will start running with the same role. (It is indicated in the assignment sheet.) 
+While increasing the replica count of the StatefulSet, we need to consider the "split-brain" issue. Number of master-eligible nodes should be an odd number. Also **discovery.zen.minimum_master_nodes** environment variable should set to  N/2 + 1, and rounding the result down to the closest integer (where N is the number of master eligible nodes). With my current configuration **discovery.zen.minimum_master_nodes** is set to 2. Each Elasticsearch cluster instance is master-eligible since they will start running with the same role.
 
 
 ### High Availability - Tolerating Node Failure
@@ -225,9 +206,6 @@ helm rollback elasticsearch 1
 kubectl get pods -n ha-elasticsearch-cluster -w
 ```
 
-### Backing up Persistent Volumes
-DigitalOcean volume backups can be used to backup the data that is provisioned by Kubernetes StorageClass and used by Elasticsearch cluster. Although this is not the best solution since its not cloud agnostic. Also there are other tools that help backing up volumes even the Kubernetes cluster itself. But I am not very familiar with these tools.
-
 ### Monitoring & Debugging
 
 #### Monitoring
@@ -237,18 +215,19 @@ Since Elastichsearch is a stateful application, we need to monitor its disk usag
 Also by monitoring the CPU and Memory consumption by the Kubernetes worker nodes, we can decide to expand the cluster by adding new worker nodes.
 
 Prometheus and Grafana mainly used to monitor the cluster. Grafana chart will be deployed with preconfigured data source and dashboards. Currently you can view two different dashboards in Grafana;
-- [Kubernetes Cluster Monitoring](http://188.166.134.220:3000/d/8fpzp0mgtvsr52bk99cdbg5xxt6jnzd6/kubernetes-cluster-monitoring-picnic)
+
+- **Kubernetes Cluster Monitoring**
     - Displays live memory/cpu/disk usages of each worker node.
 
 ![Kubernetes Cluster Monitoring](/dashboards/grafana/kubernetes-resource-usage-cluster-wide.png)
 
-- [Kubernetes Namespace Monitoring](http://188.166.134.220:3000/d/98wzmmtojsqf3gjh11rr7hynxqrgqjv4/kubernetes-namespace-monitoring-picnic)
+- **Kubernetes Namespace Monitoring**
     - Displays live memory/cpu/disk usages of each pod in the Kubernetes cluster by namespace.
 
 ![Kubernetes Namespace Monitoring](/dashboards/grafana/kubernetes-resource-usage-by-namespace.png)
 
 #### Log Visualization
-Fluentd and Kibana mainly used to aggregate and visualize the pod logs across the Kubernetes cluster. They are connecting to the highly available Elasticsearch cluster. Currently you can view Kubernetes wide pod logs [here](http://188.166.135.10:5601/app/kibana#/dashboard/04dae180-336f-11e8-9f03-db5dae1ff024). Also you can filter the logs by pods in this dashboard.
+Fluentd and Kibana mainly used to aggregate and visualize the pod logs across the Kubernetes cluster. They are connecting to the highly available Elasticsearch cluster. You can filter the logs by pods in this dashboard.
 
 ![Kubernetes Wide Pod Logs](/dashboards/kibana/kubernetes-cluster-wide-pod-logs.png)
 
